@@ -1,0 +1,39 @@
+# nanochat: An Annotated Walkthrough
+
+A chapter-by-chapter tutorial built while reading and running Andrej Karpathy's
+[nanochat](https://github.com/karpathy/nanochat) on an HPC/SLURM cluster. The aim is to
+refresh the modern LLM tech stack — pretraining, post-training, tokenization, inference —
+through real code, with the insightful Q&A preserved as callout boxes.
+
+Intended to be shareable with students and colleagues.
+
+## Chapters
+
+| # | Chapter | Status |
+|---|---|---|
+| 00 | [Overview of nanochat](00_overview.md) | ✅ |
+| 01 | [Environment Setup](01_environment_setup.md) — uv, scratch vs. home quota, SLURM | ✅ |
+| 02 | [Data Preparation](02_data_preparation.md) — ClimbMix, shards, two data loaders | ✅ |
+| 03 | [Pre-tokenization](03_pretokenization.md) — the GPT-4 split regex, the 7 rules | ✅ |
+| 04 | [BPE and the Byte Vocabulary](04_bpe_and_byte_vocabulary.md) — 256 bytes, vocab math, special tokens | ✅ (merge-loop TBC) |
+| 05 | [Tokenization Deep-Dives](05_tokenization_deep_dives.md) — multilingual, morphology, SuperBPE, parity-aware BPE, byte/pixel models | ✅ |
+
+## Coming next (day 2+)
+
+- BPE merge loop mechanics (bytes → merges → ids; `mergeable_ranks`)
+- The transformer model ([`nanochat/gpt.py`](../nanochat/gpt.py)): attention, blocks, forward pass
+- Pretraining loop ([`base_train.py`](../scripts/base_train.py)), optimizer & LR schedule (Muon + AdamW)
+- Evaluation (CORE/DCLM, bits-per-byte)
+- Post-training: SFT, RL
+- Inference & serving (KV cache, sampling)
+
+## Conventions
+
+- Code references link into the repo with line anchors (e.g.
+  [`../nanochat/tokenizer.py#L30`](../nanochat/tokenizer.py#L30)) — work in-IDE and on GitHub.
+- `> **Q:** / **A:**` callouts preserve the discussion that produced each insight.
+- Numbers (sizes, token counts, timings) are measured from an actual run, not estimated.
+- Research-frontier claims in Ch05 are verified against cited sources.
+
+The full method and style guide is in **[AUTHORING_PRINCIPLES.md](AUTHORING_PRINCIPLES.md)** —
+read it before adding or editing a chapter.
