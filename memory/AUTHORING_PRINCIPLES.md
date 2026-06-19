@@ -57,7 +57,7 @@ from what actually happened.
    regex alternation works.
 
 8. **Flag confidence honestly.** If something is uncertain or past the knowledge cutoff,
-   say so and **verify it** (web search / run code) rather than asserting. Ch05's
+   say so and **verify it** (web search / run code) rather than asserting. Ch07's
    research claims were all web-verified; the chapter says so and cites sources. If a
    prior guess turns out right after checking, note that too — it teaches calibration.
 

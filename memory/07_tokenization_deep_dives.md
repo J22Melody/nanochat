@@ -1,12 +1,13 @@
-# Chapter 5 — Tokenization Deep-Dives
+# Chapter 7 — Tokenization Deep-Dives
 
 > Where the tokenizer story gets interesting: multilingual fairness, linguistic
 > typology, and the research frontier (cross-word tokenization, fairness-aware BPE,
 > and tokenizer-free byte/pixel models). All references below were verified against
 > current sources (see footer).
 >
-> Builds on [Ch03](03_pretokenization.md) (the regex walls) and
-> [Ch04](04_bpe_and_byte_vocabulary.md) (the byte vocabulary). This chapter is the
+> Builds on [Ch03](03_pretokenization.md) (the regex walls), [Ch04](04_bpe_and_byte_vocabulary.md)
+> (the byte vocabulary), [Ch05](05_bpe_merge_loop.md) (the merge loop) and
+> [Ch06](06_encoding_and_evaluation.md) (encoding + evaluation). This chapter is the
 > "frontier" companion to the core pipeline — safe to skim on a first read.
 
 ## Multilingual: the "tokenization tax"

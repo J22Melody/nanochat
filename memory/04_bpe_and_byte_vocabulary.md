@@ -2,8 +2,8 @@
 
 > How the vocabulary is built: it starts from **256 raw bytes** (not characters),
 > grows via learned **merges**, and reserves a handful of **special tokens**. The
-> arithmetic lands exactly on 32768. *(The detailed merge-loop walkthrough continues
-> in a later chapter.)*
+> arithmetic lands exactly on 32768. *(The detailed merge-loop walkthrough is
+> [Ch05](05_bpe_merge_loop.md).)*
 >
 > Prereq: [Ch03](03_pretokenization.md) (the walls BPE merges within). Foundational
 > reading: [Sennrich et al. 2016](https://arxiv.org/abs/1508.07909) (BPE for NMT, the
@@ -141,7 +141,7 @@ SPECIAL_TOKENS = [
 
 Takeaways: **lower token id ≈ higher frequency** (merged earlier); common word = 1 token;
 rare word = many subwords; non-English = raw bytes (many tokens). Token count ≈ inverse
-familiarity. The non-English inefficiency is the subject of [Ch05](05_tokenization_deep_dives.md#multilingual-the-tokenization-tax).
+familiarity. The non-English inefficiency is the subject of [Ch07](07_tokenization_deep_dives.md#multilingual-the-tokenization-tax).
 
 ## The `token_bytes` cache → bits-per-byte (BPB)
 
@@ -154,6 +154,7 @@ different vocabularies — it's one of nanochat's primary pretraining metrics (a
 
 ---
 
-*Continued tomorrow: the BPE **merge loop** itself — watching a single chunk collapse from
-raw bytes → intermediate merges → final token ids, and how `mergeable_ranks` drive fast
+*Continued in [Ch05](05_bpe_merge_loop.md): the BPE **merge loop** itself — watching a
+single chunk collapse from raw bytes → intermediate merges → final token ids — then
+[Ch06](06_encoding_and_evaluation.md) on encoding and how `mergeable_ranks` drive fast
 inference.*

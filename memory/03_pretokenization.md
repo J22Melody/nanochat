@@ -104,7 +104,7 @@ to 2). Per the [code comment](../nanochat/tokenizer.py#L27), Karpathy found 2 is
 spot for a 32K vocab — it doesn't "waste" token space on 3-digit numbers, which matters
 more for small vocabs. The modern trend ([Llama-3](https://arxiv.org/abs/2407.21783),
 DeepSeek, GPT-4) goes further toward `\p{N}{1}` (single digits) for better arithmetic.
-More on this in [Ch05](05_tokenization_deep_dives.md).
+More on this in [Ch07](07_tokenization_deep_dives.md).
 
 ## Why pre-tokenize at all?
 

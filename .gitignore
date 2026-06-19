@@ -11,3 +11,6 @@ eval_bundle/
 # Local setup
 CLAUDE.md
 wandb/
+
+# Local nanochat run artifacts (data shards, tokenizer, reports)
+.nanochat/

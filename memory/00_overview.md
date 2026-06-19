@@ -26,7 +26,7 @@ The conceptual stages:
 
 | # | Stage | Entry script | Core module | What it teaches | Tutorial ch. |
 |---|---|---|---|---|---|
-| 1 | **Tokenization** | [`tok_train.py`](../scripts/tok_train.py) | [`tokenizer.py`](../nanochat/tokenizer.py) | BPE, byte vocab, special tokens | [03](03_pretokenization.md), [04](04_bpe_and_byte_vocabulary.md), [05](05_tokenization_deep_dives.md) |
+| 1 | **Tokenization** | [`tok_train.py`](../scripts/tok_train.py) | [`tokenizer.py`](../nanochat/tokenizer.py) | BPE, byte vocab, special tokens, merge loop, encoding, eval | [03](03_pretokenization.md), [04](04_bpe_and_byte_vocabulary.md), [05](05_bpe_merge_loop.md), [06](06_encoding_and_evaluation.md), [07](07_tokenization_deep_dives.md) |
 | 2 | **Pretraining** | [`base_train.py`](../scripts/base_train.py) | [`gpt.py`](../nanochat/gpt.py), [`optim.py`](../nanochat/optim.py), [`dataloader.py`](../nanochat/dataloader.py) | transformer, attention, next-token loss, LR schedule, DDP | TBC |
 | 3 | **Base eval** | [`base_eval.py`](../scripts/base_eval.py) | [`core_eval.py`](../nanochat/core_eval.py), [`loss_eval.py`](../nanochat/loss_eval.py) | perplexity, CORE/DCLM score, bits-per-byte | TBC |
 | 4 | **SFT** | [`chat_sft.py`](../scripts/chat_sft.py) | [`tasks/`](../tasks/), [`engine.py`](../nanochat/engine.py) | instruction tuning, chat templates, loss masking | TBC |
@@ -73,5 +73,6 @@ Go in pipeline order. For each stage: read the **script** (the what/why), then t
 
 ---
 
-*Chapters 1–5 cover what we did on day one: environment, data, and the full
-tokenization story. Later chapters will continue into the model and training.*
+*Chapters 1–7 cover environment, data, and the full tokenization story — pre-tokenization,
+the byte vocabulary, the merge loop, encoding + evaluation, and the research frontier. Later
+chapters will continue into the model and training.*
