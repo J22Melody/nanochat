@@ -33,6 +33,15 @@ train on a prefix of shards without bias).
 | Doc length | mean ~2,939 chars, median ~2,452, min 5, max ~309K |
 | One row group | 1024 docs ≈ ~2.9M chars ≈ **~3 MB** |
 
+![ClimbMix document-length distribution](figures/doc_lengths.png)
+
+*Document lengths across the full train shard (86,016 docs, log-scale y). A right-skewed
+distribution: most documents are short (median ~2,452 chars) with a heavy tail out to ~309K.
+The red line marks the **`doc_cap = 10,000`** crop applied later at tokenizer training
+([Ch04](04_bpe_and_byte_vocabulary.md)) — it touches only **~3% of documents** but, because
+those are the long ones, trims **~10% of all characters**, keeping any single document from
+dominating the merge statistics. (The rightmost bar is the display pile-up of all docs ≥20K.)*
+
 The documents are plain English web prose — news, explainers, how-tos. **No Q&A, no chat
 structure.** That conversational format only appears later in SFT, which is why the chat
 special tokens are reserved now but unused (see [Ch04](04_bpe_and_byte_vocabulary.md#the-special-tokens-9)).
