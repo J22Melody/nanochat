@@ -83,6 +83,19 @@ Two facts fall out, both interview-grade:
   *useful* vocabulary saturates — and **why the tokenizer trains on only ~2B chars, not the
   full 400B**: more data mostly re-sees `' the'` and adds singletons.
 
+![Heaps' law on ClimbMix](figures/heaps_law.png)
+
+*Measured on the real shard (log-log). Unique pre-tokens track the **fitted β≈0.60** line, far
+below the dashed **linear (β=1)** reference — every 10× more text yields only ~4× more unique
+chunks. This sublinear growth is what makes the merge loop's per-iteration cost bounded.*
+
+![Zipf distribution of chunk frequencies](figures/zipf_chunks.png)
+
+*The same chunks, ranked by frequency (log-log) — a textbook **Zipf** curve. A handful of
+chunks (`' the'`, `,`, `.`) carry millions of occurrences each, while the tail flattens onto a
+floor of **251,682 singletons (50%)**. The head merges early and cheaply; the singleton tail
+fills the table but rarely wins a merge.*
+
 > **Q:** Why dedup into a table at all — why not just merge over the token stream?
 >
 > **A:** Two reasons. **Speed:** the same chunks (`' the'`, `' of'`, `'ing'`) repeat

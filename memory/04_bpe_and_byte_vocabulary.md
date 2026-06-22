@@ -67,10 +67,17 @@ different speed/role.
 
 | Range | Count | What they are |
 |---|---|---|
-| 0–31, 127 | 32 | **control bytes** — NUL, TAB(9), newline/LF(10), CR(13), ESC, DEL |
+| 0–31, 127 | 33 | **control bytes** — NUL, TAB(9), newline/LF(10), CR(13), ESC, DEL(127) |
 | 32–126 | 95 | **printable ASCII** — space, digits, `A-Z`, `a-z`, punctuation |
 | 128–255 | 128 | **high bytes** — *not characters alone*; only meaningful as pieces of multi-byte UTF-8 |
-| **256** | | the complete byte space |
+| **256** | | the complete byte space (33 + 95 + 128) |
+
+![The 256-byte base vocabulary](figures/byte_vocabulary.png)
+
+*All 256 byte values as a 16×16 grid, colored by category (33 control + 95 printable ASCII +
+128 high bytes = 256). The bottom half (128–255) is **never a character on its own** — those
+bytes only appear as fragments of multi-byte UTF-8 sequences. This whole space is BPE's
+starting alphabet, which is why there is **no `<unk>` token, ever**.*
 
 The key fact: **a non-ASCII character is multiple bytes**
 ([UTF-8](https://en.wikipedia.org/wiki/UTF-8)):

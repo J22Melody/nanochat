@@ -137,6 +137,15 @@ singletons from [Ch05](05_bpe_merge_loop.md) that barely cleared the bar. (`'hao
 last merge, is a fragment of romanized `你好` — the multilingual tail explored in
 [Ch07](07_tokenization_deep_dives.md).)
 
+![Token byte-length vs id](figures/token_length_vs_id.png)
+
+*Every one of the 32,768 tokens, plotted by id vs its UTF-8 byte length (real trained
+tokenizer). The horizontal stripes are the integer byte-lengths; the red **binned mean** climbs
+fast from ~2 bytes (the earliest, most frequent merges like `'he'`) and saturates around ~7
+bytes — early tokens are short frequent fragments, later ones are longer rarer words (out to
+`' meatloaf'` and a 32-byte maximum). The dotted line at id 256 marks the raw-byte base
+vocabulary.*
+
 ## Evaluation #1: compression ratio (the tokenizer alone)
 
 [`scripts.tok_eval`](../scripts/tok_eval.py) round-trips a battery of diverse texts through
@@ -167,6 +176,13 @@ Reading one row:
 code   1259 bytes   GPT-2: 576 tok / 2.19   Ours: 399 tok / 3.16   +30.7%   Ours
                     └ same text, ours uses 177 fewer tokens = 30% less compute
 ```
+
+![Compression ratio vs GPT-2/GPT-4](figures/compression_ratio.png)
+
+*Bytes-per-token (higher = better) across text types, real `tok_eval` numbers. Our **green**
+bars (smallest vocab, 32K) stay level with or beat GPT-2 (gray) everywhere, and rival GPT-4
+(blue) on English/science — but collapse on **Korean**, where ours falls to byte-level while
+GPT-4's multilingual vocab holds up. That gap is the "tokenization tax."*
 
 What the numbers teach:
 
