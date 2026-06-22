@@ -149,7 +149,15 @@ roughly **linearly**:
 | d24 | ~680M | ~200M |
 
 At small depth `vocab` (32,768) dwarfs width (256), so embeddings dominate; by d24 the `depth³`
-term has overtaken. This is exactly why [`num_scaling_params`](../nanochat/gpt.py#L345) reports
+term has overtaken.
+
+![Parameter crossover vs depth](figures/params_vs_depth.png)
+
+*Computed from nanochat's real models (built on the meta device across depths, log-log axes).
+The blue **embeddings** line has the shallower slope (grows ≈ linearly in depth); the red
+**transformer** line is steeper (≈ depth³) and overtakes embeddings around **d26**. Our `d4`
+sits far left where the model is 91% embeddings; the `d24` speedrun sits right at the
+crossover.* This is exactly why [`num_scaling_params`](../nanochat/gpt.py#L345) reports
 groups *separately*, and why scaling-law math uses **`transformer_matrices + lm_head`**, never
 `total` — including the fixed-size vocab tables would distort the fit. (Historical note: the
 original **[Kaplan et al. 2020](https://arxiv.org/abs/2001.08361)** scaling-laws paper excluded
@@ -227,6 +235,18 @@ depth ─► architecture (width, heads, layers)
                         │     └─► λ keeps T_epoch constant [weight-decay paper]
                         └─► num_iterations = D / B
 ```
+
+![Scaling-law hyperparameters vs depth](figures/scaling_laws_vs_depth.png)
+
+*All four panels computed from nanochat's real parameter counts and the exact `base_train.py`
+formulas. **Top-left** — Chinchilla token budget grows super-linearly (params themselves grow
+with depth). **Top-right** — Power-Lines batch size follows `D^0.383`, then snaps to the
+nearest power of 2 (the staircase). **Bottom-left** — the two learning-rate multipliers: muP's
+width correction (green, `1/√width`) shrinks while the batch correction (purple, `√(B/B_ref)`)
+grows, and they cross at exactly **d12**, the reference, where both = 1.0. **Bottom-right** —
+weight decay falls with depth to hold `T_epoch` constant. (These panels assume the
+**auto-derived** batch size; our smoke test overrode it to 512, which is why its printed weight
+decay was 0.0835 rather than the curve's d4 value.)*
 
 The exponents (`0.383`, `0.5`, `1/√`) and the ratio `r` are empirical constants the papers
 measured; nanochat hard-codes them and lets `depth` propagate.
