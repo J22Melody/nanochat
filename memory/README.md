@@ -19,10 +19,11 @@ Intended to be shareable with students and colleagues.
 | 05 | [The BPE Merge Loop](05_bpe_merge_loop.md) — training algorithm, dedup table, heap/patch efficiency, scale | ✅ |
 | 06 | [Encoding and Evaluating the Tokenizer](06_encoding_and_evaluation.md) — merge replay, the 3 saved artifacts, compression ratio, bits-per-byte | ✅ |
 | 07 | [Tokenization Deep-Dives](07_tokenization_deep_dives.md) — multilingual, morphology, SuperBPE, parity-aware BPE, byte/pixel models | ✅ |
+| 08 | [Sizing the Model: Config, Parameters & Scaling Laws](08_model_config_and_scaling.md) — one `depth` knob, meta-device init, param counts, Chinchilla/Power-Lines/muP hyperparameters | ✅ |
 
 ## Coming next (day 2+)
 
-- The transformer model ([`nanochat/gpt.py`](../nanochat/gpt.py)): attention, blocks, forward pass
+- The transformer architecture ([`nanochat/gpt.py`](../nanochat/gpt.py)): embeddings, attention, blocks, forward pass
 - Pretraining loop ([`base_train.py`](../scripts/base_train.py)), optimizer & LR schedule (Muon + AdamW)
 - Evaluation (CORE/DCLM, bits-per-byte)
 - Post-training: SFT, RL

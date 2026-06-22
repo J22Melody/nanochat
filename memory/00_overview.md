@@ -27,7 +27,7 @@ The conceptual stages:
 | # | Stage | Entry script | Core module | What it teaches | Tutorial ch. |
 |---|---|---|---|---|---|
 | 1 | **Tokenization** | [`tok_train.py`](../scripts/tok_train.py) | [`tokenizer.py`](../nanochat/tokenizer.py) | BPE, byte vocab, special tokens, merge loop, encoding, eval | [03](03_pretokenization.md), [04](04_bpe_and_byte_vocabulary.md), [05](05_bpe_merge_loop.md), [06](06_encoding_and_evaluation.md), [07](07_tokenization_deep_dives.md) |
-| 2 | **Pretraining** | [`base_train.py`](../scripts/base_train.py) | [`gpt.py`](../nanochat/gpt.py), [`optim.py`](../nanochat/optim.py), [`dataloader.py`](../nanochat/dataloader.py) | transformer, attention, next-token loss, LR schedule, DDP | TBC |
+| 2 | **Pretraining** | [`base_train.py`](../scripts/base_train.py) | [`gpt.py`](../nanochat/gpt.py), [`optim.py`](../nanochat/optim.py), [`dataloader.py`](../nanochat/dataloader.py) | config & scaling laws, transformer, attention, next-token loss, LR schedule, DDP | [08](08_model_config_and_scaling.md) … |
 | 3 | **Base eval** | [`base_eval.py`](../scripts/base_eval.py) | [`core_eval.py`](../nanochat/core_eval.py), [`loss_eval.py`](../nanochat/loss_eval.py) | perplexity, CORE/DCLM score, bits-per-byte | TBC |
 | 4 | **SFT** | [`chat_sft.py`](../scripts/chat_sft.py) | [`tasks/`](../tasks/), [`engine.py`](../nanochat/engine.py) | instruction tuning, chat templates, loss masking | TBC |
 | 5 | **RL** | [`chat_rl.py`](../scripts/chat_rl.py) | [`engine.py`](../nanochat/engine.py), [`tasks/gsm8k.py`](../tasks/gsm8k.py) | GRPO-style RL, reward, policy gradient | TBC |
