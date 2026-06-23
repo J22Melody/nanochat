@@ -20,10 +20,12 @@ Intended to be shareable with students and colleagues.
 | 06 | [Encoding and Evaluating the Tokenizer](06_encoding_and_evaluation.md) — merge replay, the 3 saved artifacts, compression ratio, bits-per-byte | ✅ |
 | 07 | [Tokenization Deep-Dives](07_tokenization_deep_dives.md) — multilingual, morphology, SuperBPE, parity-aware BPE, byte/pixel models | ✅ |
 | 08 | [Sizing the Model: Config, Parameters & Scaling Laws](08_model_config_and_scaling.md) — one `depth` knob, meta-device init, param counts, Chinchilla/Power-Lines/muP hyperparameters | ✅ |
+| 09 | [Weight Initialization](09_weight_initialization.md) — fan-in scaling, zero-init readouts, the `ln(vocab)` initial loss, depth-aware λ schedules | ✅ |
+| 10 | [The Embedding Stage](10_embedding_stage.md) — `wte` lookup, RMSNorm, smear (token-shift), value-embed staging, why position isn't added here | ✅ |
 
 ## Coming next (day 2+)
 
-- The transformer architecture ([`nanochat/gpt.py`](../nanochat/gpt.py)): embeddings, attention, blocks, forward pass
+- The transformer block ([`nanochat/gpt.py`](../nanochat/gpt.py)): attention (RoPE, GQA, sliding window), MLP, residual stream, forward pass & loss
 - Pretraining loop ([`base_train.py`](../scripts/base_train.py)), optimizer & LR schedule (Muon + AdamW)
 - Evaluation (CORE/DCLM, bits-per-byte)
 - Post-training: SFT, RL
