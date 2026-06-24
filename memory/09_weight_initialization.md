@@ -69,6 +69,17 @@ information" baseline. A large random `lm_head` would instead produce big arbitr
 huge, noisy initial loss → unstable early gradients. Starting at the baseline and growing
 confidence is far more stable.
 
+> **Q:** So `ln(vocab)` is just the loss of a random guess?
+>
+> **A:** Exactly — a **uniform** random guess. Spreading probability equally over all 32,768
+> tokens gives each `1/32768`, so `loss = −ln(1/32768) = ln(vocab)`. Equivalently, **perplexity =
+> e^loss = 32,768 = vocab**: at init the model is as confused as picking uniformly among the
+> entire vocabulary. It's the *floor of ignorance* — even a trivial model that only knows token
+> *frequencies* (always lean toward `' the'`) beats it. So training drops below `ln(vocab)` almost
+> immediately as it learns the unigram distribution, then descends further as it learns context:
+> `uniform (10.40) → unigram entropy → true conditional entropy`. (Our smoke test only crept
+> `10.40 → 10.39` because 20 micro-steps is essentially no training.)
+
 > **Interview-ready:** *"Why init the unembedding near zero? So the first-step logits are ~0,
 > predictions are uniform, and the initial loss is exactly `ln(vocab)` — a correct, stable
 > baseline — instead of a noisy random one. You can read it straight off the loss curve."*

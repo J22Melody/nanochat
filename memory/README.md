@@ -41,3 +41,9 @@ Intended to be shareable with students and colleagues.
 
 The full method and style guide is in **[AUTHORING_PRINCIPLES.md](AUTHORING_PRINCIPLES.md)** —
 read it before adding or editing a chapter.
+
+## Related courses
+
+- **[CS336_COMPARISON.md](CS336_COMPARISON.md)** — how this walkthrough maps to Stanford
+  **CS336 (Language Modeling from Scratch)**: a near-identical pipeline, but CS336 has you
+  *implement* the standard architecture while nanochat is a *speedrun-optimized* one you read+run.
